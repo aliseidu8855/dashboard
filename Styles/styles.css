@@ -77,6 +77,12 @@ body {
   border-radius: 25px;
   box-shadow: 0 6px 7px -4px var(--black-a);
 }
+.card:hover {
+  cursor: default;
+  transform: translateY(-5px);
+  border: 1px solid var(--black-a);
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.32);
+}
 .inner-card {
   display: flex;
   justify-content: space-between;
