@@ -1,17 +1,56 @@
 {% extends 'base.html' %}
 {%  block content %}
-{%   if user.is_authenticated %}
-    <h1>Coming Soon</h1>
+    {%   if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg desktop-nav">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-share-alt"></i> Social Dashboard
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"">Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Posts</a>
+                </li>
+            </ul>
+            <div class="nav-user-section">
+                <span class="user-name">{{ user.username }}</span>
+                <a href="#" class="btn btn-settings">
+                    <i class="fas fa-cog"></i>
+                </a>
+                <a href="{% url 'logout' %}" class="btn btn-logout">Logout</a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
 {% else %}
-<div class="container">
+<div class="form container">
     <div class="heading">Login</div>
-    <form action="{% url 'home' %}" method="post" class="form">
+    <form action="{% url 'home' %}" method="POST" class="form">
         {% csrf_token %}
-      <input required="" class="input" type="text" name="username"  placeholder="Username">
-      <input required="" class="input" type="password" name="password" id="password" placeholder="Password">
-      <span class="forgot-password"><a href="#">Forgot Password ?</a></span>
-      <input class="login-button" type="submit" value="Sign In">
-</form>
-  </div>
-  {% endif %}
+        <input required="" class="input" type="text" name="username"  placeholder="Username">
+        <input required="" class="input" type="password" name="password" id="password" placeholder="Password">
+        <br>
+        <span class="sub">New Here?<a href="{% url 'register' %}"> Create Account</a></span>
+        <input class="login-button" type="submit" value="Sign In">
+    </form>
+</div>
+{% endif %}
 {% endblock %}
