@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -79,14 +79,15 @@ WSGI_APPLICATION = 'dashboard_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb_7iyk',
         'USER': 'aliseidu',
         'PASSWORD': 'aCDqqCwR1wKLAajVHAK7y2asg0sWbAqK',
-        'HOST': 'dpg-ct7t15e8ii6s73c97e10-a.oregon-postgres.render.com', 
-        'PORT': '5432',
+        'HOST': 'localhost',  # Assuming MariaDB is running locally
+        'PORT': '3306',       # Default port for MariaDB
     }
 }
+
 
 
 
@@ -125,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'dashboard/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'dashboard/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
@@ -136,10 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Rest Framework
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }

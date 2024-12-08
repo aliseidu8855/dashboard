@@ -1,35 +1,30 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import ScheduledPost
+from django.contrib.auth.hashers import make_password
+from .models import UserRecord
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email']
+class UserRecordSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the UserRecord model.
 
-class RegisterSerializer(serializers.ModelSerializer):
+    This serializer handles the conversion of UserRecord instances to and from JSON format.
+    It includes fields for 'id', 'username', 'email', 'password', 'first_name', and 'last_name'.
+    The 'password' field is write-only and will be hashed before saving the user.
+
+    Attributes:
+        password (serializers.CharField): Write-only field for the user's password.
+
+    Methods:
+        create(validated_data):
+            Hashes the password before saving the user instance.
+    """
     password = serializers.CharField(write_only=True)
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
+        model = UserRecord
+        fields = ['id', 'username', 'email', 'password', 'first_name', 'last_name']
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            password=validated_data['password']
-        )
-        return user
-    
-    
-class ScheduledPostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ScheduledPost
-        fields = ['id', 'content', 'scheduled_time', 'created_at']
-        read_only_fields = ['created_at']
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
 
-class UserUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['username', 'email']
+

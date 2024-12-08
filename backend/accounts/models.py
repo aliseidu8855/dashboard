@@ -1,11 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
-class ScheduledPost(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='scheduled_posts')
-    content = models.TextField()
-    scheduled_time = models.DateTimeField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
+class UserRecord(AbstractUser):
+    phone_number = models.CharField(max_length=15, blank=True, null=True)  # Example of an extra field
+    
+    groups = models.ManyToManyField(
+        Group,
+        related_name="custom_user_groups",
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name="custom_user_permissions",
+        blank=True,
+    )
     def __str__(self):
-        return f"Post by {self.user.username} at {self.scheduled_time}"
+        return self.username

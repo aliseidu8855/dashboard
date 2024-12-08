@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import RegisterView, UserDetailUpdateView, ScheduledPostView, UserDetailView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import RegisterView
+
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
-    path('me/', UserDetailView.as_view(), name='user-detail'),
-    path('posts/', ScheduledPostView.as_view(), name='scheduled-posts'),
-    path('posts/<int:post_id>/', ScheduledPostView.as_view(), name='scheduled-post-detail'),
+    path('login/', TokenObtainPairView.as_view(), name='login'),  # JWT login
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # JWT refresh
 ]
