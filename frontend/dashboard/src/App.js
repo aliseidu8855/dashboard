@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import "./styles/login.css"; 
+import "./styles/styles.css";
+import "./styles/register.css";
+
 
 function App() {
   const [user, setUser] = useState(null);
