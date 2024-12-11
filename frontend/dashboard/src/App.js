@@ -1,33 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
 import Register from "./components/Register";
-import "./styles/login.css"; 
-import "./styles/styles.css";
-import "./styles/register.css";
-
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleLogin = (userData) => setUser(userData);
-  const handleLogout = () => setUser(null);
-
   return (
     <Router>
-      <Navbar user={user} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/"
-          element={<h1>Welcome to the Social Dashboard!</h1>}
-        />
-      </Routes>
+      <div id="wrapper">
+        {/* Include Navbar */}
+        <Navbar />
+
+        <div id="content-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
 
 export default App;
-

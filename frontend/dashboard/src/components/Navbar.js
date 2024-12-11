@@ -1,73 +1,60 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../styles/login.css"; 
-import "../styles/styles.css";
-import "../styles/register.css";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/Navbar.css"; // Optional: Add custom styles for the Navbar
 
-const Navbar = ({ user, onLogout }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout();
-    navigate("/login");
-  };
+const Navbar = () => {
+  const location = useLocation(); // Get the current path for active link styling
 
   return (
-    <nav className="navbar navbar-expand-lg desktop-nav">
+    <nav className="navbar">
       <div className="container-fluid">
+        {/* Brand Section */}
         <Link className="navbar-brand" to="/">
-          <i className="fas fa-share-alt"></i> Social Dashboard
+          <div className="sidebar-brand-icon rotate-n-15">
+            <i className="fas fa-laugh-wink"></i>
+          </div>
+          <div className="sidebar-brand-text mx-3">Brand</div>
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
-            {user && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
-                    Profile
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/analytics">
-                    Analytics
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/posts">
-                    Posts
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-          {user ? (
-            <div className="nav-user-section">
-              <span className="user-name">{user.username}</span>
-              <button className="btn btn-settings">
-                <i className="fas fa-cog"></i>
-              </button>
-              <button onClick={handleLogout} className="btn btn-logout">
-                Logout
-              </button>
-            </div>
-          ) : (
-            <Link to="/login" className="btn btn-primary">
-              Login
+        <hr className="sidebar-divider my-0" />
+
+        {/* Navigation Links */}
+        <ul className="left-navbar" id="accordionSidebar">
+          {/* Dashboard Link */}
+          <li className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
+            <Link className="nav-link" to="/">
+              <i className="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
             </Link>
-          )}
+          </li>
+
+          {/* Profile Link */}
+          <li className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
+            <Link className="nav-link" to="/profile">
+              <i className="fas fa-user"></i>
+              <span>Profile</span>
+            </Link>
+          </li>
+
+          {/* Login Link */}
+          <li className={`nav-item ${location.pathname === "/login" ? "active" : ""}`}>
+            <Link className="nav-link" to="/login">
+              <i className="far fa-user-circle"></i>
+              <span>Login</span>
+            </Link>
+          </li>
+
+          {/* Register Link */}
+          <li className={`nav-item ${location.pathname === "/register" ? "active" : ""}`}>
+            <Link className="nav-link" to="/register">
+              <i className="fas fa-user-circle"></i>
+              <span>Register</span>
+            </Link>
+          </li>
+        </ul>
+
+        {/* Sidebar Toggle Button */}
+        <div className="text-center d-none d-md-inline">
+          <button className="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
         </div>
       </div>
     </nav>

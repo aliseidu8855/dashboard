@@ -1,0 +1,30 @@
+@import "Main.css";
+
+.navbar{
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbar-brand, .left-navbar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.nav-item{
+  margin: 0 12px;
+}
+.nav-item:hover{
+  background-color: var(--secondary-blue);
+}
+
+ul{
+  list-style: none;
+}
+span{
+  margin: 0 4px;
+}
