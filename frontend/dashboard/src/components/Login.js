@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Login.css"; // Optional: Custom styles for the login page
+import "../styles/Login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const Login = () => {
                   <div
                     className="flex-grow-1 bg-login-image"
                     style={{
-                      backgroundImage: 'url("/assets/img/dogs/image3.jpeg")',
+                      backgroundImage: 'url("../assets/img/dogs/image3.jpeg")',
                     }}
                   ></div>
                 </div>
@@ -102,19 +102,12 @@ const Login = () => {
                       <hr />
 
                       {/* Social Media Buttons */}
-                      <a
+                      <button
                         className="btn btn-primary d-block btn-google btn-user w-100 mb-2"
-                        href="#"
+                        type="button"
                       >
                         <i className="fab fa-google"></i>&nbsp; Login with Google
-                      </a>
-                      <a
-                        className="btn btn-primary d-block btn-facebook btn-user w-100"
-                        href="#"
-                      >
-                        <i className="fab fa-facebook-f"></i>&nbsp; Login with
-                        Facebook
-                      </a>
+                      </button>
                     </form>
 
                     {/* Links */}

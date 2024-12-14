@@ -1,6 +1,7 @@
 .bg-login-image {
     background-size: cover;
     background-position: center;
+    background: rgb(30, 23, 157);
   }
   
   .user input {

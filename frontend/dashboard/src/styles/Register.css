@@ -1,6 +1,7 @@
 .bg-register-image {
     background-size: cover;
     background-position: center;
+    background-color: rgb(30, 23, 157);
   }
   
   .user input {

@@ -1,26 +1,25 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/Navbar.css"; // Optional: Add custom styles for the Navbar
 
 const Navbar = () => {
-  const location = useLocation(); // Get the current path for active link styling
 
   return (
     <nav className="navbar">
       <div className="container-fluid">
         {/* Brand Section */}
         <Link className="navbar-brand" to="/">
-          <div className="sidebar-brand-icon rotate-n-15">
+          <div>
             <i className="fas fa-laugh-wink"></i>
           </div>
-          <div className="sidebar-brand-text mx-3">Brand</div>
+          <div>Brand</div>
         </Link>
         <hr className="sidebar-divider my-0" />
 
         {/* Navigation Links */}
         <ul className="left-navbar" id="accordionSidebar">
           {/* Dashboard Link */}
-          <li className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
+          <li className="nav-item">
             <Link className="nav-link" to="/">
               <i className="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
@@ -28,7 +27,7 @@ const Navbar = () => {
           </li>
 
           {/* Profile Link */}
-          <li className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
+          <li className="nav-item">
             <Link className="nav-link" to="/profile">
               <i className="fas fa-user"></i>
               <span>Profile</span>
@@ -36,7 +35,7 @@ const Navbar = () => {
           </li>
 
           {/* Login Link */}
-          <li className={`nav-item ${location.pathname === "/login" ? "active" : ""}`}>
+          <li className="nav-item">
             <Link className="nav-link" to="/login">
               <i className="far fa-user-circle"></i>
               <span>Login</span>
@@ -44,7 +43,7 @@ const Navbar = () => {
           </li>
 
           {/* Register Link */}
-          <li className={`nav-item ${location.pathname === "/register" ? "active" : ""}`}>
+          <li className="nav-item">
             <Link className="nav-link" to="/register">
               <i className="fas fa-user-circle"></i>
               <span>Register</span>
@@ -52,11 +51,8 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Sidebar Toggle Button */}
-        <div className="text-center d-none d-md-inline">
-          <button className="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-        </div>
       </div>
+      <span className="active-nav"></span>
     </nav>
   );
 };

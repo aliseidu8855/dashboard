@@ -113,19 +113,12 @@ const Register = () => {
                   <hr />
 
                   {/* Social Media Buttons */}
-                  <a
+                  <button
                     className="btn btn-primary d-block btn-google btn-user w-100 mb-2"
-                    href="#"
+                    type="button"
                   >
                     <i className="fab fa-google"></i>&nbsp; Register with Google
-                  </a>
-                  <a
-                    className="btn btn-primary d-block btn-facebook btn-user w-100"
-                    href="#"
-                  >
-                    <i className="fab fa-facebook-f"></i>&nbsp; Register with
-                    Facebook
-                  </a>
+                  </button>
                 </form>
 
                 {/* Links */}

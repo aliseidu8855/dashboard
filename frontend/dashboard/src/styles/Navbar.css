@@ -1,30 +1,48 @@
 @import "Main.css";
 
 .navbar{
-  background-color: var(--background-dark);
-  color: var(--text-light);
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  position: relative;
+  width: 80%;
+  height: 50px;
+  background: #222;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
-.navbar-brand, .left-navbar{
+.left-navbar{
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--text-light);
-}
-
-.nav-item{
-  margin: 0 12px;
-}
-.nav-item:hover{
-  background-color: var(--secondary-blue);
-}
-
-ul{
+  font-size: 1em;
+  font-weight: 500;
+  color: white;
   list-style: none;
+  text-decoration: none;
+  padding: 0 23px;
+  z-index: 1;
 }
-span{
-  margin: 0 4px;
+.nav-item{
+  margin-left: 12px;
+}
+
+li link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.active-nav{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 95px;
+  height: 100%;
+  background: linear-gradient(45deg, #194b4f, #33fffc);
+  border-radius: 10px;
+  transition: 0.5s;
 }
